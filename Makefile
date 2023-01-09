@@ -1,25 +1,30 @@
-NAME = client
-NAME1 = server
+NAMEC = client
+NAMES = server
+BONC = client_bonus
+BONS = server_bonus
+HEADER = minitalk.h
 
-CFLAGS = -Wall -Wextra -Werror
 CC = cc
-SRC = client.c
-SRC1 = server.c
-OBJ = $(SRC:.c=.o)
-OBJ1 = $(SRC1:.c=.o)
+CFLAGS = -Wall -Wextra -Werror
+FR = rm -rf
+all: $(NAMEC) $(NAMES) 
 
-all : $(NAME) $(NAME1)
+$(NAMEC): client.c $(HEADER)
+	$(CC) $(CFLAGS) client.c -o client libft.a
+$(NAMES): server.c $(HEADER)
+	$(CC) $(CFLAGS) server.c -o server libft.a
 
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) libft.a
+bonus: $(BONC) $(BONS)
 
-$(NAME1) : $(OBJ1)
-	$(CC) $(CFLAGS) $(OBJ1) -o $(NAME1) libft.a
+$(BONC): client_bonus.c $(HEADER)
+	$(CC) $(CFLAGS) client_bonus.c -o client_bonus libft.a
+$(BONS): server_bonus.c $(HEADER)
+	$(CC) $(CFLAGS) server_bonus.c -o server_bonus libft.a
 
-clean :
-	rm -rf $(OBJ) $(OBJ1)
+clean:
+	$(FR) client server
 
-fclean : clean
-	rm -rf $(NAME) $(NAME1)
+fclean: clean
+	$(FR) client_bonus server_bonus
 
-re : fclean all
+re: fclean all
