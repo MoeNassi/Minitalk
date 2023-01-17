@@ -7,24 +7,26 @@ HEADER = minitalk.h
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 FR = rm -rf
-all: $(NAMEC) $(NAMES) 
+all : $(NAMEC) $(NAMES) 
 
-$(NAMEC): client.c $(HEADER)
+$(NAMEC) : client.c $(HEADER)
 	$(CC) $(CFLAGS) client.c -o client libft.a
-$(NAMES): server.c $(HEADER)
+$(NAMES) : server.c $(HEADER)
 	$(CC) $(CFLAGS) server.c -o server libft.a
 
-bonus: $(BONC) $(BONS)
+bonus : $(BONC) $(BONS)
 
-$(BONC): client_bonus.c $(HEADER)
+$(BONC) : client_bonus.c $(HEADER)
 	$(CC) $(CFLAGS) client_bonus.c -o client_bonus libft.a
-$(BONS): server_bonus.c $(HEADER)
+$(BONS) : server_bonus.c $(HEADER)
 	$(CC) $(CFLAGS) server_bonus.c -o server_bonus libft.a
 
-clean:
+clean :
 	$(FR) client server
 
-fclean: clean
+fclean : clean
 	$(FR) client_bonus server_bonus
 
-re: fclean all
+re : fclean all
+
+.PHONY : clean fclean re all

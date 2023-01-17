@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:41:03 by mnassi            #+#    #+#             */
-/*   Updated: 2023/01/09 16:43:44 by mnassi           ###   ########.fr       */
+/*   Updated: 2023/01/17 12:26:29 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	send(int pid, char c)
 			kill(pid, SIGUSR1);
 		usleep(400);
 	}
+	usleep(400);
 }
 
 int	main(int ac, char **av)
